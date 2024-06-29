@@ -9,23 +9,21 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.jackgoggin.packinghelper.PackHelper.Pack;
-
 public class PackHelperTest {
 
-    PackHelper packHelper;
+    ItemPacker itemPacker;
 
     @BeforeEach
     void setup() {
-        packHelper = new PackHelper();
+        itemPacker = new ItemPacker();
     }
 
     @Test
     void testGetCorrectAmountOfPacksForOneItem() {
-        HashMap<Pack, Integer> expectedPackMap = new HashMap<Pack, Integer>();
-        expectedPackMap.put(Pack.SMALLEST, 1);
+        HashMap<PackSize, Integer> expectedPackMap = new HashMap<PackSize, Integer>();
+        expectedPackMap.put(PackSize.SMALLEST, 1);
 
-        HashMap<Pack, Integer> actualPackMap = packHelper.getCorrectAmountOfPacks(1);
+        HashMap<PackSize, Integer> actualPackMap = itemPacker.packageItems(1);
 
         assertMapContains(expectedPackMap, actualPackMap);
 
@@ -33,10 +31,10 @@ public class PackHelperTest {
 
     @Test
     void testGetCorrectAmountOfPacksExact() {
-        HashMap<Pack, Integer> expectedPackMap = new HashMap<Pack, Integer>();
-        expectedPackMap.put(Pack.SMALLEST, 1);
+        HashMap<PackSize, Integer> expectedPackMap = new HashMap<PackSize, Integer>();
+        expectedPackMap.put(PackSize.SMALLEST, 1);
 
-        HashMap<Pack, Integer> actualPackMap = packHelper.getCorrectAmountOfPacks(250);
+        HashMap<PackSize, Integer> actualPackMap = itemPacker.packageItems(250);
 
         assertMapContains(expectedPackMap, actualPackMap);
 
@@ -44,32 +42,32 @@ public class PackHelperTest {
 
     @Test
     void testGetCorrectAmountOfPacksForExactThreshold() {
-        HashMap<Pack, Integer> expectedPackMap = new HashMap<Pack, Integer>();
-        expectedPackMap.put(Pack.MEDIUM, 1);
+        HashMap<PackSize, Integer> expectedPackMap = new HashMap<PackSize, Integer>();
+        expectedPackMap.put(PackSize.MEDIUM, 1);
 
-        assertMapContains(expectedPackMap, packHelper.getCorrectAmountOfPacks(251));
+        assertMapContains(expectedPackMap, itemPacker.packageItems(251));
     }
 
     @Test
     void testGetCorrectAmountOfPacksForOneOverThreshold() {
-        HashMap<Pack, Integer> expectedPackMap = new HashMap<Pack, Integer>();
-        expectedPackMap.put(Pack.SMALLEST, 1);
-        expectedPackMap.put(Pack.MEDIUM, 1);
-        assertMapContains(expectedPackMap, packHelper.getCorrectAmountOfPacks(501));
+        HashMap<PackSize, Integer> expectedPackMap = new HashMap<PackSize, Integer>();
+        expectedPackMap.put(PackSize.SMALLEST, 1);
+        expectedPackMap.put(PackSize.MEDIUM, 1);
+        assertMapContains(expectedPackMap, itemPacker.packageItems(501));
     }
 
     @Test
     void testGetCorrectAmountOfPacksForHIGH() {
-        HashMap<Pack, Integer> expectedPackMap = new HashMap<Pack, Integer>();
-        expectedPackMap.put(Pack.SMALLEST, 1);
-        expectedPackMap.put(Pack.XLARGE, 1);
-        expectedPackMap.put(Pack.LARGEST, 2);
-        assertMapContains(expectedPackMap, packHelper.getCorrectAmountOfPacks(12001));
+        HashMap<PackSize, Integer> expectedPackMap = new HashMap<PackSize, Integer>();
+        expectedPackMap.put(PackSize.SMALLEST, 1);
+        expectedPackMap.put(PackSize.XLARGE, 1);
+        expectedPackMap.put(PackSize.LARGEST, 2);
+        assertMapContains(expectedPackMap, itemPacker.packageItems(12001));
     }
 
-    private void assertMapContains(Map<Pack, Integer> expectedPackMap, Map<Pack, Integer> actualPackMap) {
-        for (Map.Entry<Pack, Integer> pack : expectedPackMap.entrySet()) {
-            Pack expectedPackSize = pack.getKey();
+    private void assertMapContains(Map<PackSize, Integer> expectedPackMap, Map<PackSize, Integer> actualPackMap) {
+        for (Map.Entry<PackSize, Integer> pack : expectedPackMap.entrySet()) {
+            PackSize expectedPackSize = pack.getKey();
             Integer expectedPackSizeAmount = pack.getValue();
 
             // check that the relevant pack size (SMALL/MEDIUM) is present
