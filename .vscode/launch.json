@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-PackingHelperApplication<Item>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.jackgoggin.packinghelper.PackingHelperApplication",
+      "projectName": "Item",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

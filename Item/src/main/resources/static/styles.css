@@ -1,0 +1,33 @@
+html,
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #ece9e2;
+}
+
+.customer-form {
+  padding-top: 100px;
+}
+
+table,
+th,
+td {
+  margin: 50px auto;
+  margin-left: auto;
+  margin-right: auto;
+  table-layout: auto;
+  width: 50%;
+  border: 1px solid;
+}
+
+th {
+  background-color: black;
+  color: whitesmoke;
+}
+
+td {
+  background-color: lightgray;
+}
