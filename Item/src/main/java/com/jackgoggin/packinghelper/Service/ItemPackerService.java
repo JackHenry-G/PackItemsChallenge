@@ -1,11 +1,15 @@
-package com.jackgoggin.packinghelper;
+package com.jackgoggin.packinghelper.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
 import org.thymeleaf.util.MapUtils;
 
-public class ItemPacker {
+import com.jackgoggin.packinghelper.Model.PackSize;
+
+@Service
+public class ItemPackerService {
 
     /**
      * Packages an order of X amount of items in an optimal distribution of packs.

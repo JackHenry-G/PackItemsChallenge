@@ -9,13 +9,16 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.jackgoggin.packinghelper.Model.PackSize;
+import com.jackgoggin.packinghelper.Service.ItemPackerService;
+
 public class PackHelperTest {
 
-    ItemPacker itemPacker;
+    ItemPackerService itemPacker;
 
     @BeforeEach
     void setup() {
-        itemPacker = new ItemPacker();
+        itemPacker = new ItemPackerService();
     }
 
     @Test

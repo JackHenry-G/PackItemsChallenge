@@ -1,4 +1,4 @@
-package com.jackgoggin.packinghelper;
+package com.jackgoggin.packinghelper.Model;
 
 public enum PackSize {
     SMALLEST(250),

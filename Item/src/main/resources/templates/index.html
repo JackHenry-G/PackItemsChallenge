@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Item Pack</h1>
+    <h2>How many items would you like?</h2>
+    <form th:action="@{/order}" method="post">
+      <label for="orderSize"></label>
+      <input type="text" id="orderSize" name="orderSize" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Pack size</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tr th:each="entry : ${packs}">
+        <td th:text="${entry.key}"></td>
+        <td th:text="${entry.value}"></td>
+      </tr>
+    </table>
+  </body>
+</html>
