@@ -8,8 +8,6 @@ public class PackingHelperApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PackingHelperApplication.class, args);
-
-		System.out.println("Hello world");
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.jackgoggin.packinghelper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
@@ -22,11 +23,18 @@ public class PackHelperTest {
     }
 
     @Test
-    void testGetCorrectAmountOfPacksForOneItem() {
+    void testGetCorrectAmountOfPacks_WithInvalidNumber() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            itemPacker.packageItems(-1);
+        });
+    }
+
+    @Test
+    void testGetCorrectAmountOfPacks_WithOneItemOrdered() {
         HashMap<PackSize, Integer> expectedPackMap = new HashMap<PackSize, Integer>();
         expectedPackMap.put(PackSize.SMALLEST, 1);
 
-        HashMap<PackSize, Integer> actualPackMap = itemPacker.packageItems(1);
+        Map<PackSize, Integer> actualPackMap = itemPacker.packageItems(1);
 
         assertMapContains(expectedPackMap, actualPackMap);
 
@@ -37,7 +45,7 @@ public class PackHelperTest {
         HashMap<PackSize, Integer> expectedPackMap = new HashMap<PackSize, Integer>();
         expectedPackMap.put(PackSize.SMALLEST, 1);
 
-        HashMap<PackSize, Integer> actualPackMap = itemPacker.packageItems(250);
+        Map<PackSize, Integer> actualPackMap = itemPacker.packageItems(250);
 
         assertMapContains(expectedPackMap, actualPackMap);
 
